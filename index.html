@@ -1,0 +1,345 @@
+
+<?php
+require_once("./booking.php")
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATw44XYh1dVNKkXc4Obh7wvWmYzQWcEgM&v=3&libraries=places&callback=initAutocomplete"
+        async defer></script>
+    <script src="index.js"></script>
+   
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="background-text">
+           
+        </div>
+        <header class="header">
+            <a href="#" id="logo"><img src="img/CabHUB.png" alt=""></a>
+            <nav class="navbar1">
+                <a href="#home">home</a>
+                <a href="#cal">Calculate</a>
+                <a href="#container1">Booking</a>
+                <a href="#tarif">Our Trarif</a>
+                <a href="#contact-container">Contact us</a>
+                <a href="#about-section">about</a>
+            </nav>
+            <a href="#" id="menu-bars" class="fas fa-bars"></a>
+        </header>
+        <div class="taxi-image">
+            <img src="images/carmain.png" alt="">
+        </div>
+    </div>
+    
+    <div class="container" id="cal">
+        <div class="row">
+            <!-- left col -->
+            <div id="form" class="form-horizontal col-sm-8">
+                <div class="form-group">
+                    <b><label for="from-input">From</label></b>
+                    <input type="search" class="form-control" id="from-input" placeholder="From">
+                    <!-- aria-describedby -->
+                </div>
+                <div class="form-group">
+                    <b><label for="to-input">To</label></b>
+                    <input type="search" class="form-control" id="to-input" placeholder="To">
+                </div>
+
+                <div class="btn-pri">
+                    <button id="calculate" type="submit" class="btn btn-primary">Calculate</button>
+
+                </div>
+            </div>
+            <!-- right col -->
+            <div id="form" class="form-horizontal col-sm-4">
+                <div class="form-group">
+                    <b><label for="to-input">Distance</label></b>
+                    <label id="value-distance" class="form-text">Press on the calculate button to ...</label>
+                </div>
+                <div class="form-group">
+                    <b><label for="to-input">Price per KM</label></b>
+                    <label id="price" class="form-text">12 Per km</label>
+                </div>
+                <div class="form-group">
+                    <b><label for="to-input">Total Price</label></b>
+                    <label id="value-price" class="form-text">Press on the calculate button to ...</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map"></div>
+    <div class="form1">
+        <div>
+            <div>
+             
+                <div class="container1">
+              <center>
+                  <h2>Taxi Booking Form</h2>
+                </center>
+            <form action="booking.php" method="post">
+    
+    
+              <p><b>Personal Details</p></b>
+              <label for="name">Name</label>br
+              <input type="text" id="name" name="name" required><br>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+              <label for="phone">Phone</label>
+              <input type="number" id="phone" name="phone" required>
+    
+              <p><b>Booking Details</p></b>
+              <div class="row1">
+    
+                <div class="col-50">
+    
+                  <label for="time">Pick up(date and time):</label>
+                  <input type="datetime-local" id="time" name="time" required>
+                  <label for="vehicle">Choose a Vehicle:</label>
+                  <select name="vehicle" id="vehicle">
+                    <option value="Micro">Micro</option>
+                    <option value="Mini">Mini</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="innpva">Innova</option>
+                    <option value="travelor">travelor</option>
+                  </select>
+    
+                </div>
+    
+                <div class="col-50">
+    
+                  <label for="passenger">No. of passenger</label>
+                  <input type="number" id="passenger" name="passenger" required>
+                </div>
+              </div>
+    
+              <div class="row1">
+                <div class="col-50">
+                  <p><b>Pick Up Address</p></b>
+                  <label for="pstreet">Street</label>
+                  <input type="text" id="pstreet" name="pstreet" required>
+                  <label for="pcity">City</label>
+                  <input type="text" id="pcity" name="pcity" required>
+                  <label for="pstate">State</label>
+                  <input type="text" id="pstate" name="pstate" required>
+                  <label for="pzipcode">Zip Code</label>
+                  <input type="number" id="pzipcode" name="pzipcode" required>
+    
+                </div>
+              </div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" style="height:100px"></textarea>
+              <input type="radio" id="oneway" name="trip" value="One Way">
+              <label for="oneway">One Way</label><br>
+              <input type="radio" id="round" name="trip" value="Round Trip">
+              <label for="round">Round Trip</label><br>
+              <div class="bttn">
+              <input type="submit" value="Submit" class="btn">
+            </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+        <div class="main-tariff" id="tarif">
+            <h1>our <span>tarrif</span></h1>
+            <div class="inner-tarrif">
+                <div class="tarrif-container">
+                    <div class="inner-box">
+                        <img src="img/desire.webp" alt="">
+                        <h2>Dzire</h2>
+                        <p> 4 seater Compact Sedan <br>
+                            With Lageage Carrier
+                        </p>
+                        <h3>price: 11₹ Per km</h3>
+                        <a href="#">Book now</a>
+                    </div>
+                </div>
+                <div class="tarrif-container">
+                    <div class="inner-box">
+                        <img src="img/ertiga.jpg" alt="">
+                        <h2>Ertiga</h2>
+                        <p></p>
+                        <h3 class="yellw-section">price: 13₹ Per km</h3>
+                        <a href="#" class="btn-yellow">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="tarrif-container">
+                    <div class="inner-box">
+                        <img src="img//innova2.5v.webp" alt="">
+                        <h2>Innova</h2>
+                        <p></p>
+                        <h3>price: 17₹ Per km</h3>
+                        <a href="#container1">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-tariff">
+
+            <div class="inner-tarrif">
+                <div class="tarrif-container">
+                    <div class="inner-box">
+                        <img src="img/innova crysta.jpg" alt="">
+                        <h2>Innova Crysta</h2>
+                        <p></p>
+                        <h3>price: 18₹ Per km</h3>
+                        <a href="#container1">Book Now</a>
+                    </div>
+                </div>
+
+
+                <div class="tarrif-container">
+                    <div class="inner-box">
+                        <img src="img//travelor.jpg" alt="">
+                        <h2 class="heading-yellow">Travelor</h2>
+                        <p></p>
+                        <h3 class="yellw-section">price: 20₹ Per km</h3>
+                        <a href="#container1" class="btn-yellow">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="tarrif-container">
+                    <div class="inner-box">
+                        <img src="img/Scorpio.jpg" alt="">
+                        <h2>Scorpio</h2>
+                        <p></p>
+                        <h3>price: 16₹ Per km</h3>
+                        <a href="#container1">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-container">
+            <div class="class1">
+                <div class="class1-items">
+                    <i class="fa fa-university" ></i>
+                    <p>DLF Building 14 Tower C 17th Floor, DLF Cyber City,<br>
+                         Sector 25, Gurugram, Haryana 122002</p>
+                </div>
+                <div class="class1-items">
+                    <i class="fa fa-envelope"></i>
+                   <p>VK82527@gmail.com</p> 
+                </div>
+                <div class="class1-items">
+                    <i class="fa fa-phone-square" ></i>
+                    <p>phone:6203894594</p>
+                </div>
+            </div>
+            <div class="class2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56102.66141013272!2d77.05916388805903!3d28.497119037577253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d193629340953%3A0xe1a3aaf4c76afd36!2sConcentrix!5e0!3m2!1sen!2sin!4v1660405609625!5m2!1sen!2sin"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        
+<div class="about-section">
+    <h1>About Us Page</h1>
+    <p>Some text about who we are and what we do.</p>
+    <p>Resize the browser window to see that this page is responsive by the way.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum reprehenderit <br>
+        incidunt molestiae rem eaque error nostrum ex mollitia et pariatur.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum reprehenderit <br>
+            incidunt molestiae rem eaque error nostrum ex mollitia et pariatur.</p>
+  </div>
+  
+  <h2 style="text-align:center">Our Team</h2>
+  <div class="row3">
+    <div class="column1">
+      <div class="card">
+        <img src="img/parson1.jpg" alt="Jane" style="width:100%">
+        <div class="container3">
+          <h2>Jane </h2>
+          <p class="title3">CEO & Founder</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>jane@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="column1">
+      <div class="card">
+        <img src="img/parson2.jpg" alt="Mike" style="width:100%">
+        <div class="container3">
+          <h2>Mike Ross</h2>
+          <p class="title3">Art Director</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>mike@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="column1">
+      <div class="card">
+        <img src="img/parson3.jpg" alt="John" style="width:100%">
+        <div class="container3">
+          <h2>Dinnel</h2>
+          <p class="title3">Designer</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>john@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>    
+        <div class="footer-dark">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3 item">
+                            <h3>Services</h3>
+                            <ul>
+                                <li><a href="#">pic and drop</a></li>
+                                <li><a href="#">single side drop</a></li>
+                                <li><a href="#">tour pack</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3 item">
+                            <h3>About</h3>
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Careers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 item text">
+                            <h3>Company Name</h3>
+                            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut
+                                vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit
+                                pulvinar dictum vel in justo.</p>
+                        </div>
+                        <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a
+                                href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i
+                                    class="icon ion-social-snapchat"></i></a><a href="#"><i
+                                    class="icon ion-social-instagram"></i></a></div>
+                    </div>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+            
+</body>
+
+</html>
